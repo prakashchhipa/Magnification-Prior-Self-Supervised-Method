@@ -13,16 +13,20 @@ The Breast Cancer Histopathological Image Classification (BreakHis) is  composed
 
 # Commands
 
-1. Self-supervised pretraining (Assuming in directory 'src')
-python -m self_supervised.experiments.pretrain_MPCS --data_fold <'train_data_fold_path'> --pair_sampling <'OP'/'RP'/'FP'> --LR <learning_rate - 0.00001> --epoch <150> --description <'experiment_name'>
+**Self-supervised pretraining (Assuming in directory 'src')** 
+
+```python -m self_supervised.experiments.pretrain_MPCS --data_fold <'train_data_fold_path'> --pair_sampling <'OP'/'RP'/'FP'> --LR <learning_rate - 0.00001> --epoch <150> --description <'experiment_name'>```
 **OP - Ordered Pair, RP - Random Pair, and FP - Fixed Pair
 
-2. Fintuning using ImageNet pretrained Efficient-net b2 on BreakHis (Assuming in directory 'src')
-python -m supervised.experiments.finetune_imagenet_on_breakhis --train_data_fold <'train_data_fold_path'> --test_data_fold <'test_data_fold_path'> --magnification <'40x'/'100x'/'200x'/'400x'> --LR <learning_rate - 0.00002> --epoch <150> --description <'experiment_name'>
+**Fintuning using ImageNet pretrained Efficient-net b2 on BreakHis (Assuming in directory 'src')**
 
-3. Fintuning using MPCS pretrained Efficient-net b2 on BreakHis (Assuming in directory 'src')
-python -m supervised.experiments.finetune_mpcs_on_breakhis --train_data_fold <'train_data_fold_path'> --test_data_fold <'test_data_fold_path'> --magnification <'40x'/'100x'/'200x'/'400x'>  --model_path <'pretrained model path'> --LR <learning_rate - 0.00002> --epoch <150> --description <'experiment_name'>
+```python -m supervised.experiments.finetune_imagenet_on_breakhis --train_data_fold <'train_data_fold_path'> --test_data_fold <'test_data_fold_path'> --magnification <'40x'/'100x'/'200x'/'400x'> --LR <learning_rate - 0.00002> --epoch <150> --description <'experiment_name'>```
 
-4. Evlauation
-python - m supervised.evaluation.evaluation <check paramters in file itself>
+**Fintuning using MPCS pretrained Efficient-net b2 on BreakHis (Assuming in directory 'src')**
+
+```python -m supervised.experiments.finetune_mpcs_on_breakhis --train_data_fold <'train_data_fold_path'> --test_data_fold <'test_data_fold_path'> --magnification <'40x'/'100x'/'200x'/'400x'>  --model_path <'pretrained model path'> --LR <learning_rate - 0.00002> --epoch <150> --description <'experiment_name'>```
+
+**Evaluation**
+
+```python - m supervised.evaluation.evaluation <check paramters in file itself>```
 
