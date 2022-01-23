@@ -44,7 +44,7 @@ for malignant_type_dir in malignant_list:
         count +=1
 
 #Random shuffle the list and extract labels
-random.Random(48).shuffle(patient_list)
+random.Random.shuffle(patient_list)
 
 with open(root +'/data.csv', 'w') as f:
     writer = csv.writer(f)
@@ -60,7 +60,7 @@ print('patient count', count)
 
 
 k_folds = 5
-kfold = StratifiedKFold(n_splits=k_folds, shuffle=True, random_state=48)
+kfold = StratifiedKFold(n_splits=k_folds, shuffle=True)
 stat_dict = {}
 stat_dict_test = {}
 stat_dict_val = {}
@@ -92,7 +92,7 @@ for fold, (train_ids, test_ids) in enumerate(data_splits):
         temp_patient_list = [patient_list[index] for index in train_ids]
 
         #val - 20%
-        temp_patient_list_train, temp_patient_list_val, temp_abstract_category_list_train, temp_abstract_category_list_val = train_test_split(temp_patient_list, temp_concrete_category_list ,stratify= temp_concrete_category_list, test_size=0.25, random_state=48)
+        temp_patient_list_train, temp_patient_list_val, temp_abstract_category_list_train, temp_abstract_category_list_val = train_test_split(temp_patient_list, temp_concrete_category_list ,stratify= temp_concrete_category_list, test_size=0.25)
         
         temp_abstract_category_list_test = [abstract_category_list[index] for index in test_ids]
         temp_patient_list_test = [patient_list[index] for index in test_ids]
