@@ -1,0 +1,63 @@
+#'''Author- Prakash Chandra Chhipa, Email- prakash.chandra.chhipa@ltu.se/prakash.chandra.chhipa@gmail.com, Year- 2022'''
+
+#Every yaml file describes experiments of finetuning in supervised setting. It typically covers all 5 folds and all 4 magnfications in evaluation. 
+#Based on configurations, it initilizes pretrained weights from given setting of pretrained model for batch-sisze and epochs on which pretrained was completed.
+
+#Data
+"data_path": "/home/datasets/BACH"
+"train_data_portion": "train" # possibles values based on data volume "train_20", "train_40", "train_60", "train_80", "train" - means full training data
+"val_data_portion": "val"
+"test_data_portion": "test"
+"barred": ["90d","180d", "270d"]
+
+# CNN to finetune
+"encoder":
+  "name": "dilated_resnet"
+  "version": 50
+  "fc_dropout": 0.0
+
+#pretrained model to initalize
+"pretrained_encoder":
+  "method_type": "MPCS" #other option - "MPCS", "MPSN", so on
+  "variant": "OP" #other options - "RP", "FP"
+  "initial_weights": "imagenet" #other options - "simclr", "direct", so on - based on whatever pretrained models are available after pretraining
+  "batch_size_list": [1024]
+  "epochs_list": [100]
+  "checkpoint_base_path": ""
+  "pretrained_weights_type": "custom" #"timm_swsl_imagenet" #timm_ssl_resnet #timm_imagenet
+
+
+#Training
+"epochs": 200
+"batch_size": 32
+"early_stopping_patience": 100
+"learning_rate":
+  "lr_only": 0.0001 #for SGD 0.0001
+  "patience": 5
+"weight_decay": 0.000
+"optimizer" : "sgd" #possible option - "sgd" or "adam" or "adamw"
+"momentum" : 0.9
+"augmentation_level": "bach_high"
+"input_image_size" : 224
+
+#Computationals
+"computational_infra":
+  "fold_to_gpu_mapping":
+    "fold_0": 5
+    "fold_1": 6
+    "fold_2": 7
+    "fold_3": 5
+    "fold_4": 6
+  "workers": 1
+  
+#Logs
+"logs":
+  "tensorboard_base_path": "/home/logs/tensorboard_bach_5fold/"
+  "tensorboard_file_path": None
+  "stats_file_path": None
+
+#Outcome
+"results":
+  "result_base_path": "/home/result/results_bach_5fold/"
+  "result_stats_path": "/home/result/results_bach_5fold/stats/"
+  "result_dir_path": None

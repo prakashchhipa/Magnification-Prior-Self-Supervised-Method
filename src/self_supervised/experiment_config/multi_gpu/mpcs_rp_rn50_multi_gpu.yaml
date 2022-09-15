@@ -1,0 +1,81 @@
+#'''Author- Prakash Chandra Chhipa, Email- prakash.chandra.chhipa@ltu.se/prakash.chandra.chhipa@gmail.com, Year- 2022'''
+
+"data":
+  "data_path": "/home/datasets/BreaKHis_v1/histology_slides/breast/"
+  "data_portion": "train_80" #full
+
+#enocoder - ResNet bewing fixed encoder
+"encoder":
+  "name": "dilated_resnet"
+  "version": 50
+  "pretrained": "imagenet" #options - "imagenet", "vissl", "anything"
+  "projector": "1024-128"
+   # In case initialization and resume_training both are enabled then weights of resume_training will take over on initialization.
+  "weights_initialization": #works only if pretrained is set other than "imagenet"
+    "enable": False
+    "checkpoint_path": ""
+  "resume_training":
+    "enable": True
+    "checkpoint_path": ""
+
+# self-supervised pretraining method
+"ssl_method": 
+  "name": "MPCS"
+  "variant": "RP" #options OP - Ordered Pair, RP - Random Pair, and FP - Fixed Pair
+  "temperature": 0.1
+
+#Training
+"training_parameters":
+  "epochs": 1000
+  "batch_size_list": [1024] #[512, 256]
+  "optimizer": "LARS" #other options - adam
+  "learning_rate":
+    "lr_only": 0.00001
+    "patience": 50
+    "weight_decay": 0.000001
+  #LARS specific parameters
+  "lars_optimizer":
+    "lr": 0
+    "momentum": 0.9
+    "eta": 0.001
+    "weight_decay_filter": True
+    "lars_adaptation_filter": True
+    "learning_rate_weights": 0.2
+    "learning_rate_biases": 0.0048
+    "weight_decay": 0.000001
+
+
+#Utility
+"utility":
+  "print_freq": 50
+  "pretraining_model_saving_scheme":
+    "100": "100/"
+    "200": "200/"
+    "300": "300/"
+    "400": "400/"
+    "500": "500/"
+    "800": "800/"
+    "1000": "1000/" #cannot be larger than total epochs
+
+#Computationals
+"computational_infra":
+  "allowed_gpus": "0,1,2,3,4,5,6,7"
+  "workers": 9
+  "numexpr_num_threads": "18"
+  "cudnn_benchmark": True
+
+#Distributed processing on nodel
+"distributed_processing":
+  "backend": "nccl" # 'gloo'
+  "dist_url": "tcp://localhost:59479"
+
+#Logs
+"logs":
+  "tensorboard_base_path": "/home/logs/tb_bc_multi_gpu/"
+  "tensorboard_file_path": None
+  "stats_file_path": None
+
+#Outcome
+"results":
+  "result_base_path": "/home/result/results_bc_multi_gpu/"
+  "result_dir_path": None
