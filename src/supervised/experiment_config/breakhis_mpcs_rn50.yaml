@@ -1,0 +1,60 @@
+#'''Author- Prakash Chandra Chhipa, Email- prakash.chandra.chhipa@ltu.se/prakash.chandra.chhipa@gmail.com, Year- 2022'''
+
+#Every yaml file describes experiments of finetuning in supervised setting. It typically covers all 5 folds and all 4 magnfications in evaluation. 
+#Based on configurations, it initilizes pretrained weights from given setting of pretrained model for batch-sisze and epochs on which pretrained was completed.
+
+#Data
+"data_path": "/home/datasets/BreaKHis_v1/histology_slides/breast"
+"train_data_portion": "train_20" # possibles values based on data volume "train_20", "train_40", "train_60", "train_80", "train" - means full training data
+"val_data_portion": "val"
+"test_data_portion": "test" #evaluation on validation and test set done after traning completion by its own and results are logged in csv file
+"magnification_list": ["40X", "100X", "200X", "400X"] #currently actual magnification input logic is not working and it is defined in paython file main fuction manually. IT works with manual input value for all folds.
+# CNN to finetune
+"encoder":
+  "name": "resnet"
+  "version": 50
+  "fc_dropout": 0.0
+
+#pretrained model to initalize
+"pretrained_encoder":
+  "method_type": "MPCS" #other option - "MPCS", "MPSN", so on
+  "variant": "OP" #other options - "RP", "FP"
+  "batch_size_list": [14] #comma seprated vlaues can be given to prodices mulrutiple results
+  "epochs_list": [100, 200, 400, 500, 800, 1000]
+  "checkpoint_base_path": "/home/result/results_bc/" #scripts read the exisitng saved MPCS pretrained models for given sampling method and uses the models for finetune for each bach size in sequential manner for each fold. Al lthis is done by compeltely autonomusly.
+
+
+#Training
+"epochs": 100
+"batch_size": 32
+"early_stopping_patience": 100
+"learning_rate":
+  "lr_only": 0.0001
+  "patience": 5
+"weight_decay": 0.0
+"optimizer" : "adam" # default and only option implemented is Adam as of now"
+"momentum" : 0.9
+"augmentation_level": "augmentation_03" #check augmentation_strategy python file for more alternatives and customization
+
+
+#Computationals
+"computational_infra":
+  "fold_to_gpu_mapping": #incase of smaller GPU and less GPU this settings can be updated
+    "fold_0": 3
+    "fold_1": 4
+    "fold_2": 7
+    "fold_3": 3
+    "fold_4": 7
+  "workers": 8
+  
+#Logs
+"logs":
+  "tensorboard_base_path": "/home/logs/tensorboard_breakhis_5fold/"
+  "tensorboard_file_path": None
+  "stats_file_path": None
+
+#Outcome
+"results":
+  "result_base_path": "/home/result/results_breakhis_5fold/"
+  "result_stats_path": "/home/result/results_breakhis_5fold/stats/"
+  "result_dir_path": None
