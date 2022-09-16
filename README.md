@@ -22,20 +22,65 @@ The Breast Cancer Histopathological Image Classification (BreakHis) is  composed
 
 # Commands
 
-**Self-supervised pretraining (Assuming in directory 'src')** 
+**Data access, prepartion, and processing scripts in src/data package**
 
-```python -m self_supervised.experiments.pretrain_MPCS --data_fold <'train_data_fold_path'> --pair_sampling <'OP'/'RP'/'FP'> --LR <learning_rate - 0.00001> --epoch <150> --description <'experiment_name'>```
-**OP - Ordered Pair, RP - Random Pair, and FP - Fixed Pair
+**1. BreakHis dataset** 
+```python -m prepare_data_breakhis```
+```python -m prepare_metadata_breakhis```
+**2. BACH dataset** 
+```python -m prepare_data_bach```
+```python -m prepare_metadata_bach```
+```python -m stain_norm_bach_data```
+```python -m prepare_augmented_patches_bach```
+```python -m create_data_portion_for_augmented_patches_bach```
+**3. Breast Cancer Cell dataset** 
+```python -m prepare_data_bisque```
+```python -m prepare_metadata_bisque```
+**Choose random seed for each dataset preaprtion - experiments were condcuted using three seeds 47, 86, 16, 12
 
-**Fintuning using ImageNet pretrained Efficient-net b2 on BreakHis (Assuming in directory 'src')**
+**Self-supervised pretraining on BreakHis Dataset** 
 
-```python -m supervised.experiments.finetune_imagenet_on_breakhis --train_data_fold <'train_data_fold_path'> --test_data_fold <'test_data_fold_path'> --magnification <'40x'/'100x'/'200x'/'400x'> --LR <learning_rate - 0.00002> --epoch <150> --description <'experiment_name'>```
+**1. Single GPU implementation for constrained computation - use and customize the config files located in src/self_supervised/experiment_config/single_gpu - example mentioned below** 
+```python -m pretrain_mpcs_single_gpu --config experiment_config/single_gpu/mpcs_op_rn50.yaml```
+**It choses Ordered Pair smapling method for MPCS pretraining for ResNet50 encoder. Refer config files for cokmplete details and alternatives. Batch size needs to be small in this settings.
 
-**Fintuning using MPCS pretrained Efficient-net b2 on BreakHis (Assuming in directory 'src')**
+**2. Multi GPU implementation for large batch size support - use and customize the config files located in src/self_supervised/experiment_config/multi_gpu - example mentioned below** 
+```python -m pretrain_mpcs_multi_gpu --config experiment_config/multi_gpu/mpcs_op_rn50.yaml```
+**It choses Ordered Pair smapling method for MPCS pretraining for ResNet50 encoder. Refer config files for cokmplete details and alternatives. It can support any batch size for pretraining given sufficient computation nodes.
 
-```python -m supervised.experiments.finetune_mpcs_on_breakhis --train_data_fold <'train_data_fold_path'> --test_data_fold <'test_data_fold_path'> --magnification <'40x'/'100x'/'200x'/'400x'>  --model_path <'pretrained model path'> --LR <learning_rate - 0.00002> --epoch <150> --description <'experiment_name'>```
+**Downstream Task on BreakHis dataset** 
+**1. ImageNet supervised transfer learning finetune for malgnancy classification** 
+```python -m finetune_breakhis --config experiment_config/breakhis_imagenet_rn50.yaml```
+**Refer config files for cokmplete details and alternatives. This scripts runs model finetunung for each fold of 5 folds of dataset on given gpu mappings. Evaluation takes place after finetununbg completed on validation and testset and results are logged. no manual instruction needed.
 
-**Evaluation**
+**2. MPCS self-supervised transfer learning finetune for malgnancy classification** 
+```python -m finetune_breakhis --config experiment_config/breakhis_mpcs_rn50.yaml```
+**Refer config files for cokmplete details and alternatives and smapling method ordered pair, fixed pair and random pair. This scripts runs model finetunung for each fold of 5 folds of dataset on given gpu mappings. Pretraine models are search, accessed by scripts for given base path of all models autonomously and it fine tune models for each listed pretrained model weights for each batch size available. Evaluation takes place after finetuning completed on validation and testset and results are logged. no manual instruction needed.
 
-```python - m supervised.evaluation.evaluation <check paramters in file itself>```
+**Downstream Task on BACH dataset** 
+**1. ImageNet supervised transfer learning finetune for malgnancy classification** 
+```python -m finetune_bach --config experiment_config/bach_imagenet_rn50_data100.yaml```
+**Refer config files for cokmplete details and alternatives. This scripts runs model finetunung for each fold of 5 folds of dataset on given gpu mappings. Evaluation takes place after finetununbg completed on testset and results are logged. no manual instruction needed.
+
+**2. MPCS self-supervised transfer learning finetune for malgnancy classification** 
+```python -m finetune_bach --config experiment_config/bach_mpcs_op_dilated_rn50_1024_100_data100_224.yaml```
+**Refer config files for cokmplete details and alternatives and smapling method ordered pair, fixed pair and random pair. This scripts runs model finetunung for each fold of 5 folds of dataset on given gpu mappings. Pretraine models are search, accessed by scripts for given base path of all models autonomously and it fine tune models for each listed pretrained model weights for each batch size available. Evaluation takes place after finetuning completed on testset and results are logged. no manual instruction needed.
+
+**Downstream Task on Breat Cancer Cell  dataset** 
+
+**1. MPCS self-supervised transfer learning finetune for malgnancy classification** 
+```python -m finetune_bisque --config experiment_config/bisque_mpcs_fp_dilated_rn50_1024_100_data100_224.yaml```
+**Refer config files for cokmplete details and alternatives and smapling method ordered pair, fixed pair and random pair. This scripts runs model finetunung for each fold of 5 folds of dataset on given gpu mappings. Pretraine models are search, accessed by scripts for given base path of all models autonomously and it fine tune models for each listed pretrained model weights for each batch size available. Evaluation takes place after finetuning completed on testset and results are logged. no manual instruction needed.
+
+**2. MPCS self-supervised transfer learning linear evaluation for malgnancy classification** 
+```python -m linear_eval_bisque --config experiment_config/bisque_mpcs_fp_dilated_rn50_1024_100_data100_224.yaml```
+**Refer config files for cokmplete details and alternatives and smapling method ordered pair, fixed pair and random pair. This scripts runs model finetunung for each fold of 5 folds of dataset on given gpu mappings. Pretraine models are search, accessed by scripts for given base path of all models autonomously and it fine tune models for each listed pretrained model weights for each batch size available. Evaluation takes place after finetuning completed on testset and results are logged. no manual instruction needed.
+
+**Exaplainable results - class actviation maps** 
+
+```python class_activation_map-ipynb```
+
+**Evaluation - however evaluaiton is covered in above mentioned scripts but it can be perofrmed externally using following script 
+
+```python -m evaluation```
 
