@@ -88,12 +88,7 @@ def train_model(args_dict, fold, magnification):
     else:
         raise error ("wrong input for augmentation level parameter")
 
-
-    #temporary workaround
-    if "40X" == magnification:
-        threshold = 0.4
-    elif "100X" == magnification and "Fold_1_5" == fold:
-        threshold = 0.4
+   
     
 
     train_loader  = get_BreakHis_data_loader(
@@ -118,8 +113,17 @@ def train_model(args_dict, fold, magnification):
     DP = 0
     if "val_20" == train_data_portion:
         DP = 20
+    elif "train_100" == train_data_portion:
+        DP = 100
     elif "train_80" == train_data_portion:
         DP = 80
+    elif "train_60" == train_data_portion:
+        DP = 60
+    elif "train_40" == train_data_portion:
+        DP = 40
+    elif "train_20" == train_data_portion:
+        DP = 20
+        
     if "imagenet" == pretraining_method_type:
         
         experiment_description = f"_{fold}_{magnification}_BreakHis_FT_{DP}_{encoder}{version}_{pretraining_method_type}_"
