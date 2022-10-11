@@ -23,7 +23,6 @@ This repository code is compaitible with Python 3.6 and 3.8, Pytorch 1.2.0, and 
 
 **1. BreakHis dataset** 
 ```python -m prepare_data_breakhis```
-```python -m prepare_metadata_breakhis```
 **2. BACH dataset** 
 ```python -m prepare_data_bach```
 ```python -m prepare_metadata_bach```
