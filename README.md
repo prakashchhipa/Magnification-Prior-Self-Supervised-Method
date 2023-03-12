@@ -4,7 +4,7 @@
 
 # Venue
 
-Accepted in EEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2023
+Accepted in IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2023
 
 Chhipa, P. C., Upadhyay, R., Pihlgren, G. G., Saini, R., Uchida, S., & Liwicki, M. (2023). Magnification prior: a self-supervised method for learning representations on breast cancer histopathological images. In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (pp. 2717-2727).
 
