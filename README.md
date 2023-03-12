@@ -1,6 +1,9 @@
 # Magnification-Prior-Self-Supervised-Method
 
-Implementation for ['Magnification Prior: A Self-Supervised Method for Learning Representations on Breast Cancer Histopathological Images'] (https://arxiv.org/abs/2203.07707) - Accepted in EEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2023
+Implementation for ['Magnification Prior: A Self-Supervised Method for Learning Representations on Breast Cancer Histopathological Images'](https://openaccess.thecvf.com/content/WACV2023/html/Chhipa_Magnification_Prior_A_Self-Supervised_Method_for_Learning_Representations_on_Breast_WACV_2023_paper.html) - Accepted in EEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2023
+
+Chhipa, P. C., Upadhyay, R., Pihlgren, G. G., Saini, R., Uchida, S., & Liwicki, M. (2023). Magnification prior: a self-supervised method for learning representations on breast cancer histopathological images. In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (pp. 2717-2727).
+
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/magnification-prior-a-self-supervised-method/breast-cancer-histology-image-classification)](https://paperswithcode.com/sota/breast-cancer-histology-image-classification?p=magnification-prior-a-self-supervised-method)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/magnification-prior-a-self-supervised-method/breast-cancer-histology-image-classification-1)](https://paperswithcode.com/sota/breast-cancer-histology-image-classification-1?p=magnification-prior-a-self-supervised-method)
