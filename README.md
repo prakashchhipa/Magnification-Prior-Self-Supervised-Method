@@ -1,26 +1,81 @@
-# Magnification-Prior-Self-Supervised-Method
+# Title
 
-Implementation for ['Magnification Prior: A Self-Supervised Method for Learning Representations on Breast Cancer Histopathological Images'](https://openaccess.thecvf.com/content/WACV2023/html/Chhipa_Magnification_Prior_A_Self-Supervised_Method_for_Learning_Representations_on_Breast_WACV_2023_paper.html) - Accepted in EEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2023
+['Magnification Prior: A Self-Supervised Method for Learning Representations on Breast Cancer Histopathological Images'](https://openaccess.thecvf.com/content/WACV2023/html/Chhipa_Magnification_Prior_A_Self-Supervised_Method_for_Learning_Representations_on_Breast_WACV_2023_paper.html)
+
+# Venue
+
+Accepted in EEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2023
 
 Chhipa, P. C., Upadhyay, R., Pihlgren, G. G., Saini, R., Uchida, S., & Liwicki, M. (2023). Magnification prior: a self-supervised method for learning representations on breast cancer histopathological images. In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (pp. 2717-2727).
 
+# PapersWithCode
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/magnification-prior-a-self-supervised-method/breast-cancer-histology-image-classification)](https://paperswithcode.com/sota/breast-cancer-histology-image-classification?p=magnification-prior-a-self-supervised-method)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/magnification-prior-a-self-supervised-method/breast-cancer-histology-image-classification-1)](https://paperswithcode.com/sota/breast-cancer-histology-image-classification-1?p=magnification-prior-a-self-supervised-method)
 
 # Abstract
+
 This work presents a novel self-supervised pre-training method to learn efficient representations without labels on histopathology medical images utilizing magnification factors. Other state-of-the-art works mainly focus on fully supervised learning approaches that rely heavily on human annotations. However, the scarcity of labeled and unlabeled data is a long-standing challenge in histopathology. Currently, representation learning without labels remains unexplored in the histopathology domain. The proposed method, Magnification Prior Contrastive Similarity (MPCS), enables self-supervised learning of representations without labels on small-scale breast cancer dataset BreakHis by exploiting magnification factor, inductive transfer, and reducing human prior. The proposed method matches fully supervised learning state-of-the-art performance in malignancy classification when only 20% of labels are used in fine-tuning and outperform previous works in fully supervised learning settings for three public breast cancer datasets, including BreakHis. Further, It provides initial support for a hypothesis that reducing human-prior leads to efficient representation learning in self-supervision, which will need further investigation.
 
-# Requirement
-This repository code is compaitible with Python 3.6 and 3.8, Pytorch 1.2.0, and Torchvision 0.4.0.
+# Method
+
+Magnification Prior Contrastive Similarity and pair sampling strategies
+
+<p align="center">
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/method.png">
+</p>
 
 # Datasets
+Three pubically available breast cancer histopathology datasets are chosen. 
+
 1. **BreakHis** - This is publically available dataset on Breast Cancer Histopathology WSI of several magnifications. Link - https://web.inf.ufpr.br/vri/databases/breast-cancer-histopathological-database-breakhis/. Details from BreakHis website: The Breast Cancer Histopathological Image Classification (BreakHis) is  composed of 9,109 microscopic images of breast tumor tissue collected from 82 patients using different magnifying factors (40X, 100X, 200X, and 400X).  To date, it contains 2,480  benign and 5,429 malignant samples (700X460 pixels, 3-channel RGB, 8-bit depth in each channel, PNG format). This database has been built in collaboration with the P&D Laboratory  – Pathological Anatomy and Cytopathology, Parana, Brazil (http://www.prevencaoediagnose.com.br). We believe that researchers will find this database a useful tool since it makes future benchmarking and evaluation possible.
 
 2. **BACH** - The second dataset, Breast Cancer Histology Images (BACH) [2] is publically available from the ICIAR2018 Grand Challenge and contains 400 histopathology slides. The BACH dataset has four classes, normal, benign, in-situ, and invasive. The slide size is relatively large, 2048 × 1536 pixels; thus, patches of size 512x512. This dataset can be access via https://iciar2018-challenge.grand-challenge.org/Dataset/.
 
 3. **Breast Cancer Cell Dataset** - The third publically available dataset, Breast Cancer Cell Dataset is from the University of California, Santa Barbara Biosegmentation Benchmark. This dataset contains 58 HE-stained histopathology 896x768 size images of breast tissue, of which 26 are malignant, and 32 are benign. This dataset can be access via https://bioimage.ucsb.edu/research/bio-segmentation
 
+# Results
+
+Results on BreakHis dataset
+<p align="center">
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/result_breakhis.PNG">
+</p>
+
+Results on BACH dataset
+<p align="center">
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/result_bach.PNG">
+</p>
+
+Results on Breast Cell Cancer dataset
+<p align="center">
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/result_breast_cell.PNG">
+</p>
+
+# Qualitative
+
+t-SNE map showing self-supervised learnt representations for BreakHis after pretraining (source dataset)
+<p align="center">
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/breakhis_tsne.png">
+</p>
+
+GradCam for BreakHis dataset sample
+<p align="center">
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/qualitative_breakhis.PNG">
+</p>
+
+GradCam for BACH dataset sample
+<p align="center">
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/qualitative_bach.PNG">
+</p>
+
+GradCam for Breast Cell Cancer dataset sample
+<p align="center">
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/qualitative_breast_cell.PNG">
+</p>
+
+# Requirement
+
+This repository code is compaitible with Python 3.6 and 3.8, Pytorch 1.2.0, and Torchvision 0.4.0.
 
 # Commands
 
