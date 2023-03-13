@@ -14,12 +14,15 @@ Chhipa, P. C., Upadhyay, R., Pihlgren, G. G., Saini, R., Uchida, S., & Liwicki, 
 
 [Arxiv Version (includes supplementary material)](https://arxiv.org/pdf/2203.07707.pdf)
 
-# Poster
+# Poster & Presentation Video 
 
 Click [here](https://drive.google.com/file/d/1ydUMbWGY40_roPIHkIcj443DOjnaI4x_/view?usp=share_link) for enlarged view
 <p align="center" >
   <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/poster.PNG" height= 30%  width= 50%>
 </p>
+
+Short video presentation (4 minutes) describing the work
+[![IMAGE ALT TEXT HERE](https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/YT_intro.PNG)](https://www.youtube.com/watch?v=z9_mjW2JStQ)
 
 # PapersWithCode
 
@@ -64,7 +67,7 @@ Results on Breast Cell Cancer dataset
   <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/result_breast_cell.PNG">
 </p>
 
-# Qualitative
+# Qualitative Analysis
 
 t-SNE map showing self-supervised learnt representations for BreakHis after pretraining (source dataset)
 <p align="center">
