@@ -1,12 +1,25 @@
 # Title
 
-['Magnification Prior: A Self-Supervised Method for Learning Representations on Breast Cancer Histopathological Images'](https://openaccess.thecvf.com/content/WACV2023/html/Chhipa_Magnification_Prior_A_Self-Supervised_Method_for_Learning_Representations_on_Breast_WACV_2023_paper.html)
+Magnification Prior: A Self-Supervised Method for Learning Representations on Breast Cancer Histopathological Images
 
 # Venue
 
 Accepted in IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2023
 
 Chhipa, P. C., Upadhyay, R., Pihlgren, G. G., Saini, R., Uchida, S., & Liwicki, M. (2023). Magnification prior: a self-supervised method for learning representations on breast cancer histopathological images. In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (pp. 2717-2727).
+
+# Article
+
+[CVF Portal](https://openaccess.thecvf.com/content/WACV2023/html/Chhipa_Magnification_Prior_A_Self-Supervised_Method_for_Learning_Representations_on_Breast_WACV_2023_paper.html)
+
+[Arxiv Version (includes supplementary material)](https://arxiv.org/pdf/2203.07707.pdf)
+
+# Poster
+
+Click [here](https://drive.google.com/file/d/1ydUMbWGY40_roPIHkIcj443DOjnaI4x_/view?usp=share_link) for enlarged view
+<p align="center" height= "300", width="200">
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/poster.PNG">
+</p>
 
 # PapersWithCode
 
