@@ -17,8 +17,8 @@ Chhipa, P. C., Upadhyay, R., Pihlgren, G. G., Saini, R., Uchida, S., & Liwicki, 
 # Poster
 
 Click [here](https://drive.google.com/file/d/1ydUMbWGY40_roPIHkIcj443DOjnaI4x_/view?usp=share_link) for enlarged view
-<p align="center" height= "300", width="200">
-  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/poster.PNG">
+<p align="center" >
+  <img src="https://github.com/prakashchhipa/Magnification-Prior-Self-Supervised-Method/blob/main/figures/poster.PNG" height= 50%  width= 50%>
 </p>
 
 # PapersWithCode
